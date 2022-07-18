@@ -1,0 +1,5 @@
+.header_style {
+    @apply sticky bottom-0 flex justify-between items-center h-[50px]
+    px-5 bg-gray-600 text-white shadow-md cursor-pointer
+    hover:transition-all hover:text-lg transition hover:duration-1000 hover:ease-in-out
+}
