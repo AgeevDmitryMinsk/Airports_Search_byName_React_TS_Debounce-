@@ -49,7 +49,7 @@ export const MainPage = () => {
 
 			{/*делаю пагинацию загрженных с сервера страниц*/}
 
-			<ReactPaginate
+			{pageCount && <ReactPaginate
 				breakLabel="..."
 				nextLabel="next >"
 				onPageChange={pageChangeHandler}
@@ -63,7 +63,7 @@ export const MainPage = () => {
 				activeClassName={"font-bold"}
 				breakClassName="px-2 mr-1 border"
 
-			/>
+			/>}
 
 		</div>
 	);

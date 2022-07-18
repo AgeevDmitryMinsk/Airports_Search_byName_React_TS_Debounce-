@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import {MainPage} from "./pages/MainPage";
 import {AuthPage} from "./pages/AuthPage";
@@ -6,9 +6,18 @@ import {AirportDetailPage} from "./pages/AirportDetailPage";
 import {Navigation} from "./components/Navigation";
 import {Header} from "./components/Header";
 import {Footer} from "./components/Footer";
+import {useAppDispatch} from "./hook/redux";
+import {fetchHandbooks} from "./store/actions/handbookActions";
 
 
 function App() {
+
+	const dispatch = useAppDispatch()
+
+	useEffect(()=>{
+		dispatch(fetchHandbooks())
+	},[dispatch])
+
 	return (
 		<>
 			<Header/>
