@@ -13,7 +13,7 @@ export const fetchHandbooks = () => {
 				axios.get<IAirportRegion[]>(`/handbooks/regions`),
 				axios.get<IAirportCountry[]>(`/handbooks/countries`)
 			])
-			console.log(response)
+			console.log(`fetchHandbooks response`, response)
 
 			// в инструментах разработчика в Redux теперь можно увидеть загруженный с сервера объект handbook массивов types, regions и countries
 			dispatch(handbookSlice.actions.fetchSuccess({

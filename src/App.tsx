@@ -16,6 +16,7 @@ function App() {
 
 	useEffect(()=>{
 		dispatch(fetchHandbooks())
+		console.log('dispatch(fetchHandbooks()) загрузка всех возможных вариантов фильтров')
 	},[dispatch])
 
 	return (

@@ -12,7 +12,7 @@ export const AirportSearch = () => {
 
 	const navigate = useNavigate()
 
-	//заменил строки 9-12 на кастомный hook useInput:
+	//заменил строки 17-21 на кастомный hook useInput:
 	const input = useInput(``)
 	// const [value, setValue] = useState('')
 	// function ChangeHandler(e:React.ChangeEvent<HTMLInputElement>) {
@@ -41,7 +41,7 @@ export const AirportSearch = () => {
 			//request
 			searchAirports()
 		}
-		console.log(input.value)
+		console.log(`search_input.value`, input.value)
 	}, [debounced])
 
 	return (

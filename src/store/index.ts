@@ -15,7 +15,7 @@ export function setupStore() {
 	})
 }
 
-//теперь можем получить store
+//теперь можем получить store здесь, но лучше будем делать это в корневом index.tsx
 //export const store = setupStore()
 
 export type RootState = ReturnType<typeof rootReducer>
