@@ -17,12 +17,6 @@ export const MainPage = () => {
 	const country = useAppSelector(state => state.settings.filter.country)
 	const item_per_page = useAppSelector(state => state.settings.filter.items_per_page)
 
-	//количество загруженных страниц
-	//const pageCount = Math.ceil(count / ITEMS_PER_PAGE)
-	console.log(item_per_page)
-	let item_per_pageNew = 2
-	if (item_per_page === 2) { let item_per_pageNew = 3}
-	console.log( 'item_per_pageNew = ', item_per_pageNew)
 
 	const pageCount = Math.ceil(count / item_per_page)
 
@@ -31,7 +25,7 @@ export const MainPage = () => {
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		//dispatch(fetchAirports(page, ITEMS_PER_PAGE))
+
 		dispatch(fetchAirportsWithFilter(page, item_per_page))
 
 	}, [dispatch, page, type, country, region, item_per_page])
@@ -44,38 +38,57 @@ export const MainPage = () => {
 
 	return (
 
-		<div className={'flex-col justify-center pt-10 mx-auto h-screen w-screen overflow-y-scroll max-w-[760px]'}>
+		<div className={'flex-col justify-center pt-10 mx-auto min-h-screen w-screen  max-w-[760px]'}>
+			<div className="mockup-code border bg-gray-800 relative">
+
+				{/*main_Page*/}
+				<AirportSearch/>
+				<AirportFilter/>
+
+				{loading &&
+                    <progress
+                        className=" absolute top-96 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>}
 
 
-			main
-			<AirportSearch/>
-			<AirportFilter/>
-
-			{loading && <p className={"text-center text-4xl"}>Loading...</p>}
-			{error && <p className={"text-center text-4xl text-red-600"}>{error}</p>}
+				{error && <p className={"text-center text-4xl text-red-600"}>{error}</p>}
 
 
-			{airport.map(el => <AirportCard key={el.id} airport={el}/>)}
+				{(airport.length > 0)
+					? airport.map(el => <AirportCard key={el.id} airport={el}/>)
+					: (
+						<>
+							<div className={'flex justify-center text-red-600 font-bold'}>
+								No such airport found!
+							</div>
+
+							<div className={'flex justify-center text-red-600 font-bold'}>
+								Please, try to set other filter parameters next time
+							</div>
+						</>)
+
+				}
 
 
-			{/*делаю пагинацию загрженных с сервера страниц*/}
+				{/*делаю пагинацию загрженных с сервера страниц*/}
 
-			{pageCount && <ReactPaginate
-                breakLabel="..."
-                nextLabel="next >"
-                onPageChange={pageChangeHandler}
-                pageRangeDisplayed={5}
-                pageCount={pageCount}
-                previousLabel="< previous"
-                previousClassName={"px-2 mr-1 border"}
-                nextLinkClassName={"px-2  border"}
-                pageClassName={"px-2 mr-1 border"}
-                containerClassName={"flex my-10"}
-                activeClassName={"font-bold"}
-                breakClassName="px-2 mr-1 border"
+				{(pageCount>0) && <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="next >"
+                    onPageChange={pageChangeHandler}
+                    pageRangeDisplayed={5}
+					// marginPagesDisplayed = {10}
+                    pageCount={pageCount}
+                    previousLabel="< previous"
+                    previousClassName={"px-2 mr-1 border badge badge-secondary badge-outline"}
+                    nextLinkClassName={"px-2  border badge badge-secondary badge-outline"}
+                    pageClassName={"px-2 mr-1 border badge badge-accent badge-outline"}
+                    containerClassName={"flex my-10"}
+                    activeClassName={"font-bold badge badge-primary badge-outline"}
+                    breakClassName="px-2 mr-1 border badge badge-secondary badge-outline"
 
-            />}
+                />}
 
+			</div>
 		</div>
 	);
 };

@@ -1,6 +1,4 @@
 import {createAction, createSlice} from "@reduxjs/toolkit";
-import {useState} from "react";
-import {IFilter, TEMS_PER_PAGE_Type} from "../../models/models";
 
 export const setFilterCountry = createAction<string>('settings/setFilterCountry')
 export const setFilterRegion = createAction<string>('settings/setFilterRegion')
@@ -36,3 +34,5 @@ const settingsSlice = createSlice({
 })
 
 export const settingsReducer = settingsSlice.reducer
+
+
