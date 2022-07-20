@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {AirportSearch} from "../components/AirportSearch";
 import {AirportFilter} from "../components/AirportFilter";
 import {AirportCard} from "../components/AirportCard";
-import { fetchAirportsWithFilter} from "../store/actions/airportActions";
+import {fetchAirportsWithFilter} from "../store/actions/airportActions";
 import {useAppDispatch, useAppSelector} from "../hook/redux";
 //для пагинации использую библиотеку react-paginate
 import ReactPaginate from 'react-paginate';
@@ -26,9 +26,9 @@ export const MainPage = () => {
 		//dispatch(fetchAirports(page, ITEMS_PER_PAGE))
 		dispatch(fetchAirportsWithFilter(page, ITEMS_PER_PAGE))
 
-	}, [dispatch, page,type, country, region])
+	}, [dispatch, page, type, country, region])
 
-	function pageChangeHandler( {selected}:{ selected:number }) {
+	function pageChangeHandler({selected}: { selected: number }) {
 		// console.log(selected)
 		setPage(selected + 1)
 		console.log(selected + 1)
@@ -53,20 +53,20 @@ export const MainPage = () => {
 			{/*делаю пагинацию загрженных с сервера страниц*/}
 
 			{pageCount && <ReactPaginate
-				breakLabel="..."
-				nextLabel="next >"
-				onPageChange={pageChangeHandler}
-				pageRangeDisplayed={5}
-				pageCount={pageCount}
-				previousLabel="< previous"
-				previousClassName={"px-2 mr-1 border"}
-				nextLinkClassName={"px-2  border"}
-				pageClassName={"px-2 mr-1 border"}
-				containerClassName={"flex my-10"}
-				activeClassName={"font-bold"}
-				breakClassName="px-2 mr-1 border"
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={pageChangeHandler}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                previousClassName={"px-2 mr-1 border"}
+                nextLinkClassName={"px-2  border"}
+                pageClassName={"px-2 mr-1 border"}
+                containerClassName={"flex my-10"}
+                activeClassName={"font-bold"}
+                breakClassName="px-2 mr-1 border"
 
-			/>}
+            />}
 
 		</div>
 	);
