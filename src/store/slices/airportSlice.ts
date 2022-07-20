@@ -22,6 +22,9 @@ interface AirportPayload {
 	count: number
 }
 
+
+
+
 export const airportSlice = createSlice({
 	name: "airport",
 	initialState: initialState,
@@ -46,7 +49,8 @@ export const airportSlice = createSlice({
 				.filter(a=> a.type.includes(action.payload.type))
 				.filter(a=> a.country.includes(action.payload.country))
 				.filter(a=> a.region.includes(action.payload.region))
-		}
+		},
+
 
 	}
 })

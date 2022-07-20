@@ -1,20 +1,22 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../hook/redux";
 import {IFilter} from "../models/models";
-import {fetchAirports} from "../store/actions/airportActions";
+import { fetchAirportsWithFilter} from "../store/actions/airportActions";
 import {airportSlice} from "../store/slices/airportSlice";
+import {setFilterCountry, setFilterRegion, setFilterType} from "../store/slices/settingsSlice";
 
 export const AirportFilter = () => {
 
 	const dispatch = useAppDispatch()
 
 	const {loading, countries, regions, types} = useAppSelector(state => state.handbook)
+	const filter = useAppSelector(state => state.settings.filter)
 
-	const [filter, setFilter] = useState<IFilter>({
-		country: '', // имя должно совпадать с именем в поле <select name="country"> ниже - обязательно!
-		region: '',
-		type: ''
-	})
+	// const [filter, setFilter] = useState<IFilter>({
+	// 	country: '', // имя должно совпадать с именем в поле <select name="country"> ниже - обязательно!
+	// 	region: '',
+	// 	type: ''
+	// })
 
 	//отслеживаю состояние задан ли фильтр для сортировки аэропортов
 	const [hasFiltered, setHasFiltered] = useState(false)
@@ -24,22 +26,34 @@ export const AirportFilter = () => {
 	}
 
 	//слежу за изменением фильтра
-	useEffect(() => {
-		if (isFilterEnabled()) {
-			setHasFiltered(true)
-		} else {
-			setHasFiltered(false)
-		}
-		dispatch(airportSlice.actions.fetchFilter(filter))
-	}, [filter])
+	// useEffect(() => {
+	// 	if (isFilterEnabled()) {
+	// 		setHasFiltered(true)
+	// 	} else {
+	// 		setHasFiltered(false)
+	// 	}
+	// 	dispatch(fetchAirportsWithFilter(1, 3, filter ))
+	// 	//dispatch(airportSlice.actions.fetchFilter(filter))
+	// 	//console.log('filter in useEffect=', filter) // filter in useEffect= {country: '', region: '', type: 'closed'}
+	// }, [filter])
 
 	function changeHandler(event: ChangeEvent<HTMLSelectElement>) {
-		console.log(event.target.value)
-		setFilter(prev => ({...prev, [event.target.name]: event.target.value}))
+		console.log(`event.target.value =`, event.target.value)
+		if(event.target.name === 'type') {
+			dispatch(setFilterType(event.target.value))
+		}
+		if(event.target.name === 'region') {
+			dispatch(setFilterRegion(event.target.value))
+		}
+		if(event.target.name === 'country') {
+			dispatch(setFilterCountry(event.target.value))
+		}
+		//setFilter(prev => ({...prev, [event.target.name]: event.target.value}))
+		//console.log(`filter in changeHandler() = `, filter) // filter in changeHandler() =  {country: '', region: '', type: ''}
 	}
 
 	function clearFilter(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-		setFilter({country: '', region: '', type: ''})
+		//setFilter({country: '', region: '', type: ''})
 	}
 
 	return (
