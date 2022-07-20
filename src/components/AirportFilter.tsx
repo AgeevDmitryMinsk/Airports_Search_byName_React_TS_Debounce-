@@ -55,6 +55,7 @@ export const AirportFilter = () => {
 		dispatch(setFilterCountry(''))
 		dispatch(setFilterType(''))
 		dispatch(setFilterRegion(''))
+		setHasFiltered(false)
 	}
 
 	return (
