@@ -1,10 +1,11 @@
 import {createAction, createSlice} from "@reduxjs/toolkit";
 import {useState} from "react";
-import {IFilter} from "../../models/models";
+import {IFilter, TEMS_PER_PAGE_Type} from "../../models/models";
 
 export const setFilterCountry = createAction<string>('settings/setFilterCountry')
 export const setFilterRegion = createAction<string>('settings/setFilterRegion')
 export const setFilterType = createAction<string>('settings/setFilterType')
+export const setFilterItemsPerPage = createAction<number>('settings/setFilterItemsPerPage')
 
 const settingsSlice = createSlice({
 	name: 'settings',
@@ -12,7 +13,8 @@ const settingsSlice = createSlice({
 		filter: {
 			country: '',
 			region: '',
-			type: ''
+			type: '',
+			items_per_page: 2
 		}
 	},
 	reducers: {},
@@ -26,6 +28,9 @@ const settingsSlice = createSlice({
 			})
 			.addCase(setFilterRegion, (state, action) => {
 				state.filter.region = action.payload
+			})
+			.addCase(setFilterItemsPerPage, (state, action) => {
+				state.filter.items_per_page = action.payload
 			})
 	}
 })

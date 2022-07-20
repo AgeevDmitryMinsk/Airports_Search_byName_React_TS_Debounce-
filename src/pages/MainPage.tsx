@@ -7,26 +7,34 @@ import {useAppDispatch, useAppSelector} from "../hook/redux";
 //для пагинации использую библиотеку react-paginate
 import ReactPaginate from 'react-paginate';
 
-// буду выводить 50 элементов-карточек аэропортов на странице
-const ITEMS_PER_PAGE = 3
+// буду выводить 3 элементов-карточек аэропортов на странице
+//const ITEMS_PER_PAGE = 3
 
 export const MainPage = () => {
 	const {airport, error, loading, count} = useAppSelector(state => state.airport)
 	const type = useAppSelector(state => state.settings.filter.type)
 	const region = useAppSelector(state => state.settings.filter.region)
 	const country = useAppSelector(state => state.settings.filter.country)
+	const item_per_page = useAppSelector(state => state.settings.filter.items_per_page)
 
 	//количество загруженных страниц
-	const pageCount = Math.ceil(count / ITEMS_PER_PAGE)
+	//const pageCount = Math.ceil(count / ITEMS_PER_PAGE)
+	console.log(item_per_page)
+	let item_per_pageNew = 2
+	if (item_per_page === 2) { let item_per_pageNew = 3}
+	console.log( 'item_per_pageNew = ', item_per_pageNew)
+
+	const pageCount = Math.ceil(count / item_per_page)
+
 	const [page, setPage] = useState(1)
 
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		//dispatch(fetchAirports(page, ITEMS_PER_PAGE))
-		dispatch(fetchAirportsWithFilter(page, ITEMS_PER_PAGE))
+		dispatch(fetchAirportsWithFilter(page, item_per_page))
 
-	}, [dispatch, page, type, country, region])
+	}, [dispatch, page, type, country, region, item_per_page])
 
 	function pageChangeHandler({selected}: { selected: number }) {
 		// console.log(selected)

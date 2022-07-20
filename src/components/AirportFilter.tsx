@@ -1,14 +1,17 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../hook/redux";
-import {setFilterCountry, setFilterRegion, setFilterType} from "../store/slices/settingsSlice";
+import {setFilterCountry, setFilterItemsPerPage, setFilterRegion, setFilterType} from "../store/slices/settingsSlice";
+import {TEMS_PER_PAGE_Type} from "../models/models";
 
 export const AirportFilter = () => {
 
 	const dispatch = useAppDispatch()
 
+	let items_per_page = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 	const {loading, countries, regions, types} = useAppSelector(state => state.handbook)
 	const filter = useAppSelector(state => state.settings.filter)
-	//console.log(filter)
+	console.log(filter)
 
 	// const [filter, setFilter] = useState<IFilter>({
 	// 	country: '', // имя должно совпадать с именем в поле <select name="country"> ниже - обязательно!
@@ -49,6 +52,10 @@ export const AirportFilter = () => {
 			dispatch(setFilterCountry(event.target.value))
 			setHasFiltered(true)
 		}
+
+		if(event.target.name === 'items_per_page') {
+			dispatch(setFilterItemsPerPage(Number(event.target.value)))
+		}
 	}
 
 	function clearFilter() {
@@ -66,7 +73,7 @@ export const AirportFilter = () => {
 				<span className={'font-bold'}>filters:</span>
 
 				<select name="type"
-						className={"px-4"}
+						className={"ml-4 px-4 max-w-[110px]"}
 						onChange={changeHandler}
 						value={filter.type}
 				>
@@ -90,7 +97,7 @@ export const AirportFilter = () => {
 
 
 				<select name="region"
-						className={"px-4"}
+						className={"px-4 mr-4"}
 						onChange={changeHandler}
 						value={filter.region}
 				>
@@ -99,6 +106,20 @@ export const AirportFilter = () => {
 						<option key={el}>{el}</option>
 					))}
 				</select>
+
+				<b>Items</b>
+				<select name="items_per_page"
+						className={"px-4 max-w-[70px] text-red-600 font-bold border rounded"}
+						onChange={changeHandler}
+						value={filter.items_per_page}
+				>
+					<option value=""  disabled>Items_Per_Page</option>
+					{items_per_page.map(el => (
+						<option key={el} className={'text-center'}>{el}</option>
+					))}
+				</select>
+				<b>per page</b>
+
 
 				{/*кнопка для зачистки полей select*/}
 				{hasFiltered && <button onClick={clearFilter}
