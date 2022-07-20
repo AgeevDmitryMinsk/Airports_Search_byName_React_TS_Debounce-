@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 
-import {useInput} from "../hook/input";
+//import {useInput} from "../hook/input";
 import {useDebounce} from "../hook/useDebounce";
 import axios from "../axios";
 import {IAirport, ServerResponse} from "../models/models";
@@ -13,16 +13,16 @@ export const AirportSearch = () => {
 	const navigate = useNavigate()
 
 	//заменил строки 9-12 на кастомный hook useInput:
-	const input = useInput(``)
-	// const [value, setValue] = useState('')
-	// function ChangeHandler(e:React.ChangeEvent<HTMLInputElement>) {
-	// 	console.log(e.target.value)
-	// 	setValue(e.target.value)
-	// }
+	//const input = useInput(``)
+	const [value, setValue] = useState('')
+	function ChangeHandler(e:React.ChangeEvent<HTMLInputElement>) {
+		console.log(e.target.value)
+		setValue(e.target.value)
+	}
 
 	const [airports, setAirports] = useState<IAirport[]>([])
 
-	const debounced = useDebounce(input.value)
+	const debounced = useDebounce(value)
 
 	async function searchAirports() {
 		const response = await axios.get<ServerResponse<IAirport>>('airports', {
@@ -41,14 +41,14 @@ export const AirportSearch = () => {
 			//request
 			searchAirports()
 		}
-		console.log(input.value)
-	}, [debounced, airports])
+		console.log(value)
+	}, [debounced])
 
 	let InputClassName = (airports.length > 0) ? "border outline-0 w-full input input-bordered input-success max-w-xs" :
 		"border outline-0 w-full input input-bordered input-secondary max-w-xs"
 
 	return (
-		<div className={"border relative p-3"} onMouseLeave={() => input.setValue('')}>
+		<div className={"border relative p-3"} onMouseLeave={() => setValue('')}>
 			{/*search_Page. */}
 			<span className='font-bold'>Please, enter your favourite Airport:</span>
 			<div className="form-control">
@@ -56,13 +56,14 @@ export const AirportSearch = () => {
 					<input type="text"
 						   className={InputClassName}
 						   placeholder={"type something here..."}
-						   {...input} />
+						   onChange={ChangeHandler}/>
+						   {/*{...input} />*/}
 
 					<button
 						className={(airports.length > 0) ? "btn btn-square input-success" : "btn btn-square input-secondary"}>
 						<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
 							 stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
 								  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
 						</svg>
 					</button>
