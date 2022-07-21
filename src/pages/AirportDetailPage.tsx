@@ -45,7 +45,7 @@ export const AirportDetailPage = () => {
                             <div>Type: <span className={airportDetailClass}>{airportDetail?.type}</span></div>}
 
 						{(airportDetail?.coordinates) &&
-                            <div className={`text-sm pt-1`}>Coordinates: {airportDetail?.coordinates}</div>}
+                            <div className={`text-sm pt-1 text-center`}>Coordinates: {airportDetail?.coordinates}</div>}
 
 
 					</div>
