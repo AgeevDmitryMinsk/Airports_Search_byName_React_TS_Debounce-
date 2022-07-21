@@ -16,7 +16,7 @@ export const AirportSearch = () => {
 	//const input = useInput(``)
 	const [value, setValue] = useState('')
 	function ChangeHandler(e:React.ChangeEvent<HTMLInputElement>) {
-		console.log(e.target.value)
+		//console.log(e.target.value)
 		setValue(e.target.value)
 	}
 
@@ -41,7 +41,7 @@ export const AirportSearch = () => {
 			//request
 			searchAirports()
 		}
-		console.log(value)
+		console.log(`debounced = `, debounced)
 	}, [debounced])
 
 	let InputClassName = (airports.length > 0) ? "border outline-0 w-full input input-bordered input-success max-w-xs" :
