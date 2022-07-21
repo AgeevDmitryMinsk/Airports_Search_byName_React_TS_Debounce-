@@ -31,6 +31,8 @@ function App() {
 
 			</Routes>
 
+
+
 			<Footer/>
 		</div>
 
@@ -39,3 +41,5 @@ function App() {
 }
 
 export default App;
+
+// load

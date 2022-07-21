@@ -37,6 +37,8 @@ export const MainPage = () => {
 		console.log(selected + 1)
 	}
 
+	console.log(`loading in MainPage`, loading)
+
 	return (
 
 		<div className={'mt-28 mx-auto min-h-screen w-screen  max-w-[760px]'}>
@@ -48,13 +50,14 @@ export const MainPage = () => {
 
 				{loading &&
                     <progress
-                        className=" absolute top-96 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>}
+                        className="absolute top-80 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>
+				}
 
 
 				{error && <p className={"text-center text-4xl text-red-600"}>{error}</p>}
 
 
-				{(airport.length > 0)
+				{((airport.length > 0) || (loading === true))
 					? airport.map(el => <AirportCard key={el.id} airport={el}/>)
 					: (
 						<>
@@ -72,7 +75,7 @@ export const MainPage = () => {
 
 				{/*делаю пагинацию загрженных с сервера страниц*/}
 
-				{(pageCount>0) && <ReactPaginate
+				{(pageCount > 0) && <ReactPaginate
                     breakLabel="..."
                     nextLabel="next >"
                     onPageChange={pageChangeHandler}
@@ -97,3 +100,4 @@ export const MainPage = () => {
 	);
 };
 
+//loading

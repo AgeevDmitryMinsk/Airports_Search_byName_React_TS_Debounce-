@@ -61,10 +61,17 @@ export const fetchAirportsWithFilter = (page = 1, count = 3, filter?: IFilter) =
 			// const response = await axios.get<ServerResponse<IAirport>>(`airports?count=${count}&page=${page}`)
 			console.log(response.data)
 			//загрузка завершилась:
-			dispatch(airportSlice.actions.fetchSuccess({
-				airport: response.data.results,
-				count: response.data.count
-			}))
+			//добавил задержку для отображения спиннера 300 мСек
+			setTimeout(function delay() {
+				dispatch(airportSlice.actions.fetchSuccess({
+					airport: response.data.results,
+					count: response.data.count
+				}))
+			}, 3000)
+
+
+
+
 
 		}catch (e){
 			//если есть ошибка, то ловим ее, прописывая, что она типа Error:

@@ -43,20 +43,47 @@ export const AirportFilter = () => {
 		setHasFiltered(false)
 	}
 
-
+	console.log(`loading=`, loading)
 
 	return (
 		<>
 
 			{loading &&
-                <progress
-                    className="absolute top-96 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>}
+                // <div className=" absolute left-1/4">
+				// 	{/*<div className="flex justify-center mt-5 text-center">*/}
+				// 	{/*<h3>React Spinners</h3>*/}
+                //     <div className="row">
+				// 		{dataSpinner.map((loader, index) => (
+				// 			<div key={loader.name} className="col-xs-12 col-sm-6 col-md-4 col-lg-2 p-5">
+				// 				<div
+				// 					data-tip={loader.name}
+				// 					data-for="happyFace"
+				// 					key={loader.name + index}
+				// 					className="loaderBox"
+				// 				>
+				// 					<loader.Component {...loader.props} />
+				// 				</div>
+				// 			</div>
+				// 		))}
+                //     </div>
+                //     <ReactTooltip
+                //         id="happyFace"
+                //         place="top"
+                //         type="dark"
+                //         effect="float"
+                //         getContent={(dataTip) => `${dataTip}`}
+                //     />
+                // </div>
+				<progress
+				    className="absolute top-80 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>
+			}
+
 
 			<div className={"border py-2 px-4 m-2 rounded"}>
 				<span className='font-bold'>Airport filters:</span>
 
 				<select name="type"
-						className={"ml-4 px-4 max-w-[110px] select select-secondary hover:bg-primary" }
+						className={"ml-4 px-4 max-w-[110px] select select-secondary hover:bg-primary"}
 						onChange={changeHandler}
 						value={filter.type}
 				>

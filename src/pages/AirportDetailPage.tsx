@@ -16,9 +16,14 @@ export const AirportDetailPage = () => {
 	}, [])
 
 	async function getAirportDetails() {
-		const response = await axios.get<IAirportDetails>(`/airports/${params.id}`)
-		console.log(`response=`, response.data.name)
-		setAirportDetail(response.data)
+		try {
+			const response = await axios.get<IAirportDetails>(`/airports/${params.id}`)
+			console.log(`response=`, response.data.name)
+			setAirportDetail(response.data)
+		} catch (err) {
+			console.log(err)
+		}
+
 	}
 
 	//console.log(airportDetail?.type)
