@@ -57,7 +57,10 @@ export const AirportSearch = () => {
 					<input type="text"
 						   className={InputClassName}
 						   placeholder={"type something here..."}
-						   onChange={ChangeHandler}/>
+						   onChange={ChangeHandler}
+						   value={value}
+					/>
+
 						   {/*{...input} />*/}
 
 					<button

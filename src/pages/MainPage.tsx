@@ -88,6 +88,8 @@ export const MainPage = () => {
 
                 />}
 
+				{/*<Test/>*/}
+
 			</div>
 		</div>
 	);
