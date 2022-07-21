@@ -88,7 +88,7 @@ export const MainPage = () => {
 
                 />}
 
-				{/*<Test/>*/}
+				{/*<Test/> - deleted in project */}
 
 			</div>
 		</div>
