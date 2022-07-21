@@ -6,6 +6,7 @@ import {fetchAirportsWithFilter} from "../store/actions/airportActions";
 import {useAppDispatch, useAppSelector} from "../hook/redux";
 //для пагинации использую библиотеку react-paginate
 import ReactPaginate from 'react-paginate';
+import Modal from "../components/Modal";
 
 // буду выводить 3 элементов-карточек аэропортов на странице
 //const ITEMS_PER_PAGE = 3
@@ -38,7 +39,7 @@ export const MainPage = () => {
 
 	return (
 
-		<div className={'flex-col justify-center pt-10 mx-auto min-h-screen w-screen  max-w-[760px]'}>
+		<div className={'mt-28 mx-auto min-h-screen w-screen  max-w-[760px]'}>
 			<div className="mockup-code border bg-gray-800 relative">
 
 				{/*main_Page*/}
@@ -79,16 +80,17 @@ export const MainPage = () => {
 					// marginPagesDisplayed = {10}
                     pageCount={pageCount}
                     previousLabel="< previous"
-                    previousClassName={"px-2 mr-1 border badge badge-secondary badge-outline"}
-                    nextLinkClassName={"px-2  border badge badge-secondary badge-outline"}
-                    pageClassName={"px-2 mr-1 border badge badge-accent badge-outline"}
-                    containerClassName={"flex my-10"}
+                    previousClassName={"px-2 mr-1 border badge badge-secondary badge-outline hover:bg-primary"}
+                    nextLinkClassName={"px-2  border badge badge-secondary badge-outline hover:bg-primary"}
+                    pageClassName={"px-2 mr-1 border badge badge-accent badge-outline hover:bg-primary"}
+                    containerClassName={"flex my-10 ml-16"}
                     activeClassName={"font-bold badge badge-primary badge-outline"}
                     breakClassName="px-2 mr-1 border badge badge-secondary badge-outline"
 
                 />}
 
 				{/*<Test/> - deleted in project */}
+				<Modal/>
 
 			</div>
 		</div>

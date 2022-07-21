@@ -44,11 +44,11 @@ export const AirportSearch = () => {
 		console.log(`debounced = `, debounced)
 	}, [debounced])
 
-	let InputClassName = (airports.length > 0) ? "border outline-0 w-full input input-bordered input-success max-w-xs" :
-		"border outline-0 w-full input input-bordered input-secondary max-w-xs"
+	let InputClassName = (airports.length > 0) ? "border outline-0 w-full input input-bordered input-success max-w-xs hover:bg-primary" :
+		"border outline-0 w-full input input-bordered input-secondary max-w-xs hover:bg-primary"
 
 	return (
-		<div className={"border relative p-3"} onMouseLeave={() => setValue('')}>
+		<div className={"border relative p-3 m-2 rounded"} onMouseLeave={() => setValue('')}>
 		{/*<div className={"border relative p-3"} >*/}
 			{/*search_Page. */}
 			<span className='font-bold'>Please, enter your favourite Airport:</span>

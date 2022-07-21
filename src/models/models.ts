@@ -27,4 +27,20 @@ export interface IFilter {
 
 export type TEMS_PER_PAGE_Type = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 
-//setValue
+
+export interface IAirportDetails {
+	ident: string;
+	local_code?: any;
+	name: string;
+	coordinates?: string;
+	elevation_ft?: string;
+	gps_code?: any;
+	iata_code?: any;
+	continent?: string;
+	type?: string;
+	country?: string;
+	region?: string;
+	municipality?: string;
+}
+
+

@@ -18,8 +18,8 @@ export const AirportCard = ({airport}: AirportCardProps) => {
 	return (
 
 
-		<div className={`border rounded py-4 px-6 mb-4 hover:shadow-md
-								hover:transition-all hover:scale-105 cursor-pointer`}
+		<div className={`border rounded py-4 px-6 mb-1 ml-2 mr-2 hover:shadow-md
+								hover:transition-all hover:bg-primary cursor-pointer`}
 			 onClick={clickHandler}>
 			<p className={"text-lg font-bold"}>{airport.name}</p>
 			<p className={"text-sm"}>{airport.region}</p>

@@ -43,6 +43,8 @@ export const AirportFilter = () => {
 		setHasFiltered(false)
 	}
 
+
+
 	return (
 		<>
 
@@ -50,54 +52,54 @@ export const AirportFilter = () => {
                 <progress
                     className="absolute top-96 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>}
 
-			<div className={"border py-2 px-4 mb-2"}>
+			<div className={"border py-2 px-4 m-2 rounded"}>
 				<span className='font-bold'>Airport filters:</span>
 
 				<select name="type"
-						className={"ml-4 px-4 max-w-[110px] select select-secondary"}
+						className={"ml-4 px-4 max-w-[110px] select select-secondary hover:bg-primary" }
 						onChange={changeHandler}
 						value={filter.type}
 				>
-					<option value="" disabled>Type</option>
+					<option value="" disabled className={'bg-gray-800'}>Type</option>
 					{types.map(el => (
-						<option key={el}>{el}</option>
+						<option key={el} className={'bg-gray-700'}>{el}</option>
 					))}
 				</select>
 
 
 				<select name="country"
-						className={"ml-4 px-4 max-w-[110px] select select-secondary"}
+						className={"ml-4 px-4 max-w-[110px] select select-secondary hover:bg-primary"}
 						onChange={changeHandler}
 						value={filter.country}
 				>
-					<option value="" disabled>Country</option>
+					<option value="" disabled className={'bg-gray-800'}>Country</option>
 					{countries.map(el => (
-						<option key={el}>{el}</option>
+						<option key={el} className={'bg-gray-700'}>{el}</option>
 					))}
 				</select>
 
 
 				<select name="region"
-						className={"ml-4 px-4 mr-8 max-w-[110px] select select-secondary"}
+						className={"ml-4 px-4 mr-8 max-w-[110px] select select-secondary hover:bg-primary"}
 						onChange={changeHandler}
 						value={filter.region}
 				>
-					<option value="" disabled>Region</option>
+					<option value="" disabled className={'bg-gray-800'}>Region</option>
 					{regions.map(el => (
-						<option key={el}>{el}</option>
+						<option key={el} className={'bg-gray-700'}>{el}</option>
 					))}
 				</select>
 
 
 				<b>Items</b>
 				<select name="items_per_page"
-						className={"ml-1 mr-1 px-4 max-w-[70px] select select-accent"}
+						className={"ml-1 mr-1 px-4 max-w-[70px] select select-accent hover:bg-primary"}
 						onChange={changeHandler}
 						value={filter.items_per_page}
 				>
-					<option value="" disabled>Items_Per_Page</option>
+					<option value="" disabled className={'bg-gray-800'}>Items_Per_Page</option>
 					{items_per_page.map(el => (
-						<option key={el} className={'text-center'}>{el}</option>
+						<option key={el} className={'text-center bg-gray-700'}>{el}</option>
 					))}
 				</select>
 				<b>per page</b>
