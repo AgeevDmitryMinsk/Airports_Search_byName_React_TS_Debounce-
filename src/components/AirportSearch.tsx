@@ -49,10 +49,11 @@ export const AirportSearch = () => {
 
 	return (
 		<div className={"border relative p-3"} onMouseLeave={() => setValue('')}>
+		{/*<div className={"border relative p-3"} >*/}
 			{/*search_Page. */}
 			<span className='font-bold'>Please, enter your favourite Airport:</span>
-			<div className="form-control">
-				<div className="input-group">
+			<div className="form-control relative">
+				<div className="input-group mb-6">
 					<input type="text"
 						   className={InputClassName}
 						   placeholder={"type something here..."}
@@ -68,10 +69,11 @@ export const AirportSearch = () => {
 						</svg>
 					</button>
 				</div>
+				{(debounced.length >= 3) && (airports.length === 0) && <div className={'text-red-600 top-12 absolute'}> please enter the correct airport name for the request</div>}
 			</div>
 
 			{(debounced.length >= 3) && (airports.length > 0) &&
-                <ul className={`list-none w-[312px] max-h-screen bg-white shadow-md overflow-y-scroll`}>
+                <ul className={`list-none absolute top-20 mt-1 w-[312px] max-h-screen bg-white shadow-md overflow-y-scroll`}>
 					{airports.map(el => (
 						<li key={el.id}
 							onClick={() => navigate(`/airport/${el.id}`)}
