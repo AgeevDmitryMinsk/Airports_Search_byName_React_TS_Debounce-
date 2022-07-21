@@ -2,27 +2,65 @@ import axios from "../../axios";
 import {AppDispatch, RootState} from "../index";
 import {airportSlice} from "../slices/airportSlice";
 
-import {IAirport, ServerResponse} from "../../models/models";
-import {createAsyncThunk} from "@reduxjs/toolkit";
-//createAsyncThunk()
+import {IAirport, IFilter, ServerResponse} from "../../models/models";
 
-//запрос к серверу через thunk
-export const fetchAirports = (page: number) => {
-	//если нужен квери-параметр type=`small_airport`, то добавляю:
-	// export const fetchAirports = (page = 1, count = 50, type=`small_airport`) => {
-	return async (dispatch: AppDispatch, getState: () => RootState ) =>{
+//запрос к серверу
+// export const fetchAirports = (page = 1, count = 3) => {
+// 	return async (dispatch: AppDispatch) =>{
+// 		try{
+// 			//загрузка началась:
+// 			dispatch(airportSlice.actions.fetching())
+// 			//загружаю данные:
+// 			const response = await axios.get<ServerResponse<IAirport>>(`airports`, {
+// 				params: {
+// 					page,
+// 					count
+// 				}
+// 			})
+// 			// const response = await axios.get<ServerResponse<IAirport>>(`airports?count=${count}&page=${page}`)
+// 			console.log(response.data)
+// 			//загрузка завершилась:
+// 			dispatch(airportSlice.actions.fetchSuccess({
+// 				airport: response.data.results,
+// 				count: response.data.count
+// 			}))
+//
+// 		}catch (e){
+// 			//если есть ошибка, то ловим ее, прописывая, что она типа Error:
+// 			dispatch(airportSlice.actions.fetchError(e as Error ))
+//
+//
+// 		}
+// 	}
+//
+// }
+
+export const fetchAirportsWithFilter = (page = 1, count = 3, filter?: IFilter) => {
+	return async (dispatch: AppDispatch, getState: () => RootState ) => {
+		const {type, country, region} = getState().settings.filter
 		try{
 			//загрузка началась:
 			dispatch(airportSlice.actions.fetching())
+
+			// if(filter) {
+			// 	if (filter.type) {type = filter.type}
+			//
+			// 	if (filter.region) {region = filter.region}
+			//
+			// 	if (filter.country) {country = filter.country}
+			// }
+
+			let  params: {page: number; count: number; type?: string; region?: string; country?: string} =  {page, count}
+			if (type) params = {...params, type}
+			if (region) params = {...params, region}
+			if (country) params = {...params, country}
 			//загружаю данные:
-			// const params = getState().airport.params
-			const params = {page, count: 3}
-			const response = await axios.get<ServerResponse<IAirport>>(`airports`, {
-				params
+			const response = await axios.get<ServerResponse<IAirport>>(`airports`, {params
+
 			})
 			// const response = await axios.get<ServerResponse<IAirport>>(`airports?count=${count}&page=${page}`)
-			console.log(`fetchAirports response.data`, response.data)
-			//загрузка завершилась успешно:
+			console.log(response.data)
+			//загрузка завершилась:
 			dispatch(airportSlice.actions.fetchSuccess({
 				airport: response.data.results,
 				count: response.data.count

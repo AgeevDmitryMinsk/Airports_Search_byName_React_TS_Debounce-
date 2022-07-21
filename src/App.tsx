@@ -20,7 +20,7 @@ function App() {
 	},[dispatch])
 
 	return (
-		<>
+		<div className='h-screen'>
 			<Header/>
 
 			<Navigation/>
@@ -32,7 +32,7 @@ function App() {
 			</Routes>
 
 			<Footer/>
-		</>
+		</div>
 
 
 	);

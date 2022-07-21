@@ -24,3 +24,7 @@ export interface IFilter {
 	region: IAirportRegion
 	country: IAirportCountry
 }
+
+export type TEMS_PER_PAGE_Type = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+
+//setValue
