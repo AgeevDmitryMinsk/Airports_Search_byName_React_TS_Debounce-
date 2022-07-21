@@ -80,7 +80,7 @@ export const AirportFilter = () => {
 
 
 			<div className={"border py-2 px-4 m-2 rounded"}>
-				<span className='font-bold'>Airport filters:</span>
+				<span className='font-bold p-1'>Airport filters:</span>
 
 				<select name="type"
 						className={"ml-4 px-4 max-w-[110px] select select-secondary hover:bg-primary"}
@@ -118,7 +118,7 @@ export const AirportFilter = () => {
 				</select>
 
 
-				<b>Items</b>
+				<b>Items:</b>
 				<select name="items_per_page"
 						className={"ml-1 mr-1 px-4 max-w-[70px] select select-accent hover:bg-primary"}
 						onChange={changeHandler}
@@ -134,7 +134,7 @@ export const AirportFilter = () => {
 
 				{/*кнопка для зачистки полей select*/}
 				{hasFiltered && <button onClick={clearFilter}
-                                        className="py-1 px-2 bg-red-700 text-white ml-2 rounded">&times;</button>}
+                                        className="py-0.5 px-2 bg-fuchsia-600 text-white ml-2 rounded">&times;</button>}
 			</div>
 		</>
 

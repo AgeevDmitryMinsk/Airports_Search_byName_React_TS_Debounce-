@@ -4,7 +4,7 @@ const Modal = () => {
 	return (
 		<div>
 
-			<label htmlFor="my-modal-6" className="btn modal-button hover:bg-primary">open modal</label>
+			<label htmlFor="my-modal-6" className="btn modal-button hover:bg-primary ml-4">open modal</label>
 
 
 			<input type="checkbox" id="my-modal-6" className="modal-toggle"/>

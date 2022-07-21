@@ -7,6 +7,8 @@ import {useAppDispatch, useAppSelector} from "../hook/redux";
 //для пагинации использую библиотеку react-paginate
 import ReactPaginate from 'react-paginate';
 import Modal from "../components/Modal";
+import './mainstyle.scss'
+
 
 // буду выводить 3 элементов-карточек аэропортов на странице
 //const ITEMS_PER_PAGE = 3
@@ -41,17 +43,37 @@ export const MainPage = () => {
 
 	return (
 
-		<div className={'mt-28 mx-auto min-h-screen w-screen  max-w-[760px]'}>
+		<div className={'mt-28 mx-auto min-h-screen w-screen  max-w-[780px]'}>
 			<div className="mockup-code border bg-gray-800 relative">
 
 				{/*main_Page*/}
 				<AirportSearch/>
 				<AirportFilter/>
 
+				{/*{loading &&*/}
+				{/*    <progress*/}
+				{/*        className="absolute top-80 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>*/}
+				{/*}*/}
 				{loading &&
-                    <progress
-                        className="absolute top-80 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>
+                    <div className={'h-[100px] '}>
+                        <div className="content bg-primary bg-transparent">
+                            <svg version="1.1" id="airplane-loader" xmlns="http://www.w3.org/2000/svg" width="144" fill='fuchsia'
+                                 height="48" viewBox="0 0 144 48">
+                                <path id="airplane-take-off"  fill='fuchsia'
+                                      d="M59.124,34L56,29h-4l2.947,11H89c1.657,0,3-1.343,3-3s-1.343-3-3-3H78.998L69,18h-4l4.287,16H59.124z"/>
+                                <rect id="ground" x="52" y="44" fill="#fuchsia" width="40" height="4"/>
+                            </svg>
+                            <svg version="1.1" id="airplane-loader" xmlns="http://www.w3.org/2000/svg" width="144"
+                                 height="48" viewBox="0 0 144 48">
+                                <path id="airplane-landing" fill="fuchsia"
+                                      d="M59.124,34L56,29h-4l2.947,11H89c1.657,0,3-1.343,3-3s-1.343-3-3-3H78.998L69,18h-4l4.287,16H59.124z"/>
+                                <rect id="ground" x="52" y="44" fill="fuchsia" width="40" height="4"/>
+                            </svg>
+                        </div>
+
+                    </div>
 				}
+
 
 
 				{error && <p className={"text-center text-4xl text-red-600"}>{error}</p>}
@@ -83,9 +105,9 @@ export const MainPage = () => {
 					// marginPagesDisplayed = {10}
                     pageCount={pageCount}
                     previousLabel="< previous"
-                    previousClassName={"px-2 mr-1 border badge badge-secondary badge-outline hover:bg-primary"}
-                    nextLinkClassName={"px-2  border badge badge-secondary badge-outline hover:bg-primary"}
-                    pageClassName={"px-2 mr-1 border badge badge-accent badge-outline hover:bg-primary"}
+                    previousClassName={"px-2 mr-4 border badge badge-secondary badge-outline hover:bg-primary"}
+                    nextLinkClassName={"px-2 ml-4 border badge badge-secondary badge-outline hover:bg-primary"}
+                    pageClassName={"px-2 mr-1 border badge badge-secondary badge-outline hover:bg-primary"}
                     containerClassName={"flex my-10 ml-16"}
                     activeClassName={"font-bold badge badge-primary badge-outline"}
                     breakClassName="px-2 mr-1 border badge badge-secondary badge-outline"
@@ -96,6 +118,8 @@ export const MainPage = () => {
 				<Modal/>
 
 			</div>
+
+
 		</div>
 	);
 };

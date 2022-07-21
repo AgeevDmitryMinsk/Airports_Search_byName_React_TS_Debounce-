@@ -44,14 +44,14 @@ export const AirportSearch = () => {
 		console.log(`debounced = `, debounced)
 	}, [debounced])
 
-	let InputClassName = (airports.length > 0) ? "border outline-0 w-full input input-bordered input-success max-w-xs hover:bg-primary" :
-		"border outline-0 w-full input input-bordered input-secondary max-w-xs hover:bg-primary"
+	let InputClassName = (airports.length > 0) ? "border outline-0 w-full p-4 ml-1 input input-bordered input-success max-w-xs hover:bg-primary" :
+		"border outline-0 w-full input input-bordered input-secondary max-w-xs p-4 ml-1 hover:bg-primary"
 
 	return (
-		<div className={"border relative p-3 m-2 rounded"} onMouseLeave={() => setValue('')}>
+		<div className="border relative p-3 m-2 rounded" onMouseLeave={() => setValue('')}>
 		{/*<div className={"border relative p-3"} >*/}
 			{/*search_Page. */}
-			<span className='font-bold'>Please, enter your favourite Airport:</span>
+			<span className='font-bold p-1.5'>Please, enter your favourite Airport:</span>
 			<div className="form-control relative">
 				<div className="input-group mb-6">
 					<input type="text"
@@ -76,7 +76,7 @@ export const AirportSearch = () => {
 			</div>
 
 			{(debounced.length >= 3) && (airports.length > 0) &&
-                <ul className={`list-none absolute top-20 mt-1 w-[312px] max-h-screen bg-white shadow-md overflow-y-scroll`}>
+                <ul className={`list-none absolute top-20 left-6 mt-1 w-[312px] max-h-screen bg-white shadow-md overflow-y-scroll`}>
 					{airports.map(el => (
 						<li key={el.id}
 							onClick={() => navigate(`/airport/${el.id}`)}
