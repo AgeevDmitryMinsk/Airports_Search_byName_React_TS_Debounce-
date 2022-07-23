@@ -20,11 +20,15 @@ export interface ServerResponse<T> {
 export type IAirportType = string
 export type IAirportRegion = string
 export type IAirportCountry = string
+export type IAirportContinent = string
+export type IAirportMunicipality = string
 
 export interface IFilter {
 	type: IAirportType
 	region: IAirportRegion
 	country: IAirportCountry
+	continents: IAirportContinent
+	municipality: IAirportMunicipality
 }
 
 // export type TEMS_PER_PAGE_Type = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10

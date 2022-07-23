@@ -43,7 +43,7 @@ export const MainPage = () => {
 
 	return (
 
-		<div className={'mt-28 mx-auto min-h-screen w-screen  max-w-[780px]'}>
+		<div className={'mt-28 mx-auto min-h-screen w-screen  max-w-[800px]'}>
 			<div className="mockup-code border bg-gray-800 relative">
 
 				{/*main_Page*/}
@@ -105,12 +105,12 @@ export const MainPage = () => {
 					// marginPagesDisplayed = {10}
                     pageCount={pageCount}
                     previousLabel="< previous"
-                    previousClassName={"px-2 mr-4 border badge badge-secondary badge-outline hover:bg-primary"}
-                    nextLinkClassName={"px-2 ml-4 border badge badge-secondary badge-outline hover:bg-primary"}
-                    pageClassName={"px-2 mr-1 border badge badge-secondary badge-outline hover:bg-primary"}
+                    previousClassName={"px-2 mr-4 border badge badge-outline hover:bg-primary"}
+                    nextLinkClassName={"px-2 ml-4 border badge badge-outline hover:bg-primary"}
+                    pageClassName={"px-2 mr-1 border badge badge-outline hover:bg-primary"}
                     containerClassName={"flex my-10 ml-16"}
-                    activeClassName={"font-bold badge badge-primary badge-outline"}
-                    breakClassName="px-2 mr-1 border badge badge-secondary badge-outline"
+                    activeClassName={"font-bold badge badge-secondary badge-outline p-1"}
+                    breakClassName="px-2 mr-1 border badge badge-outline"
 
                 />}
 

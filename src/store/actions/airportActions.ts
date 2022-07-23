@@ -37,7 +37,7 @@ import {IAirport, IFilter, ServerResponse} from "../../models/models";
 
 export const fetchAirportsWithFilter = (page = 1, count = 3, filter?: IFilter) => {
 	return async (dispatch: AppDispatch, getState: () => RootState ) => {
-		const {type, country, region} = getState().settings.filter
+		const {type, country, region, continent, municipality} = getState().settings.filter
 		try{
 			//загрузка началась:
 			dispatch(airportSlice.actions.fetching())
@@ -50,16 +50,27 @@ export const fetchAirportsWithFilter = (page = 1, count = 3, filter?: IFilter) =
 			// 	if (filter.country) {country = filter.country}
 			// }
 
-			let  params: {page: number; count: number; type?: string; region?: string; country?: string} =  {page, count}
+			let  params: {page: number;
+				count: number;
+				type?: string;
+				region?: string;
+				country?: string;
+				continent?: string;
+				municipality?: string
+			} =  {page, count}
+
 			if (type) params = {...params, type}
 			if (region) params = {...params, region}
 			if (country) params = {...params, country}
+			if (continent) params = {...params, continent}
+			if (municipality) params = {...params, municipality}
+
 			//загружаю данные:
 			const response = await axios.get<ServerResponse<IAirport>>(`airports`, {params
 
 			})
 			// const response = await axios.get<ServerResponse<IAirport>>(`airports?count=${count}&page=${page}`)
-			console.log(response.data)
+			console.log('fetchAirportsWithFilter response.data', response.data)
 			//загрузка завершилась:
 			//добавил задержку для отображения спиннера 300 мСек
 			setTimeout(function delay() {

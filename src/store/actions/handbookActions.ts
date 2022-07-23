@@ -1,7 +1,13 @@
 import {AppDispatch} from "../index";
 import {handbookSlice} from "../slices/handbookSlice";
 import axios from "../../axios";
-import {IAirportCountry, IAirportRegion, IAirportType} from "../../models/models";
+import {
+	IAirportContinent,
+	IAirportCountry,
+	IAirportMunicipality,
+	IAirportRegion,
+	IAirportType
+} from "../../models/models";
 
 //запрос к серверу
 export const fetchHandbooks = () => {
@@ -11,7 +17,9 @@ export const fetchHandbooks = () => {
 			const response = await Promise.all([
 				axios.get<IAirportType[]>(`/handbooks/airport-types`),
 				axios.get<IAirportRegion[]>(`/handbooks/regions`),
-				axios.get<IAirportCountry[]>(`/handbooks/countries`)
+				axios.get<IAirportCountry[]>(`/handbooks/countries`),
+				axios.get<IAirportContinent[]>(`/handbooks/continents`),
+				axios.get<IAirportMunicipality[]>(`/handbooks/municipalities`),
 			])
 			console.log(`fetchHandbooks response`, response)
 
@@ -21,12 +29,11 @@ export const fetchHandbooks = () => {
 				dispatch(handbookSlice.actions.fetchSuccess({
 					types: response[0].data,
 					regions: response[1].data,
-					countries: response[2].data
+					countries: response[2].data,
+					continents: response[3].data,
+					municipalities: response[4].data
 				}))
 			}, 300)
-
-
-
 
 		} catch (e){
 

@@ -1,4 +1,10 @@
-import {IAirportCountry, IAirportRegion, IAirportType} from "../../models/models";
+import {
+	IAirportContinent,
+	IAirportCountry,
+	IAirportMunicipality,
+	IAirportRegion,
+	IAirportType
+} from "../../models/models";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {airportSlice} from "./airportSlice";
 
@@ -7,20 +13,25 @@ interface HandbookState {
 	types: IAirportType[]
 	regions: IAirportRegion[]
 	countries: IAirportCountry[]
+	continents: IAirportContinent[]
+	municipalities : IAirportMunicipality[]
 }
 
 const initialState: HandbookState = {
 	loading: false,
 	types: [],
 	countries: [],
-	regions: []
+	regions: [],
+	continents: [],
+	municipalities: []
 }
 
 interface HandBookPayload {
 	types: IAirportType[]
 	countries: IAirportCountry[],
-	regions: IAirportRegion[]
-
+	regions: IAirportRegion[],
+	continents: IAirportContinent[]
+	municipalities : IAirportMunicipality[]
 }
 
 export const handbookSlice = createSlice({
@@ -35,6 +46,8 @@ export const handbookSlice = createSlice({
 			state.types = action.payload.types
 			state.countries = action.payload.countries
 			state.regions = action.payload.regions
+			state.continents = action.payload.continents
+			state.municipalities = action.payload.municipalities
 		}
 
 	}

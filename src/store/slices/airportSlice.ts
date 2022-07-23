@@ -44,12 +44,12 @@ export const airportSlice = createSlice({
 			state.loading = false
 			state.error = action.payload.message
 		},
-		fetchFilter(state, action:PayloadAction<IFilter>){
-			state.airport = state.airportsContainer
-				.filter(a=> a.type.includes(action.payload.type))
-				.filter(a=> a.country.includes(action.payload.country))
-				.filter(a=> a.region.includes(action.payload.region))
-		},
+		// fetchFilter(state, action:PayloadAction<IFilter>){
+		// 	state.airport = state.airportsContainer
+		// 		.filter(a=> a.type.includes(action.payload.type))
+		// 		.filter(a=> a.country.includes(action.payload.country))
+		// 		.filter(a=> a.region.includes(action.payload.region))
+		// },
 
 
 	}

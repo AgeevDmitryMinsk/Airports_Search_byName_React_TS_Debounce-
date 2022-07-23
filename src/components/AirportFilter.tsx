@@ -1,6 +1,12 @@
 import React, {ChangeEvent, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../hook/redux";
-import {setFilterCountry, setFilterItemsPerPage, setFilterRegion, setFilterType} from "../store/slices/settingsSlice";
+import {
+	setFilterContinent,
+	setFilterCountry,
+	setFilterItemsPerPage, setFilterMunicipality,
+	setFilterRegion,
+	setFilterType
+} from "../store/slices/settingsSlice";
 
 export const AirportFilter = () => {
 
@@ -8,7 +14,7 @@ export const AirportFilter = () => {
 
 	let items_per_page = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-	const {loading, countries, regions, types} = useAppSelector(state => state.handbook)
+	const {loading, countries, regions, types, continents, municipalities} = useAppSelector(state => state.handbook)
 	const filter = useAppSelector(state => state.settings.filter)
 	console.log(filter)
 
@@ -31,6 +37,16 @@ export const AirportFilter = () => {
 			setHasFiltered(true)
 		}
 
+		if (event.target.name === 'continent') {
+			dispatch(setFilterContinent(event.target.value))
+			setHasFiltered(true)
+		}
+
+		if (event.target.name === 'municipality') {
+			dispatch(setFilterMunicipality(event.target.value))
+			setHasFiltered(true)
+		}
+
 		if (event.target.name === 'items_per_page') {
 			dispatch(setFilterItemsPerPage(Number(event.target.value)))
 		}
@@ -40,6 +56,8 @@ export const AirportFilter = () => {
 		dispatch(setFilterCountry(''))
 		dispatch(setFilterType(''))
 		dispatch(setFilterRegion(''))
+		dispatch(setFilterContinent(''))
+		dispatch(setFilterMunicipality(''))
 		setHasFiltered(false)
 	}
 
@@ -49,31 +67,6 @@ export const AirportFilter = () => {
 		<>
 
 			{loading &&
-                // <div className=" absolute left-1/4">
-				// 	{/*<div className="flex justify-center mt-5 text-center">*/}
-				// 	{/*<h3>React Spinners</h3>*/}
-                //     <div className="row">
-				// 		{dataSpinner.map((loader, index) => (
-				// 			<div key={loader.name} className="col-xs-12 col-sm-6 col-md-4 col-lg-2 p-5">
-				// 				<div
-				// 					data-tip={loader.name}
-				// 					data-for="happyFace"
-				// 					key={loader.name + index}
-				// 					className="loaderBox"
-				// 				>
-				// 					<loader.Component {...loader.props} />
-				// 				</div>
-				// 			</div>
-				// 		))}
-                //     </div>
-                //     <ReactTooltip
-                //         id="happyFace"
-                //         place="top"
-                //         type="dark"
-                //         effect="float"
-                //         getContent={(dataTip) => `${dataTip}`}
-                //     />
-                // </div>
 				<progress
 				    className="absolute top-80 ml-64 progress w-56 bg-primary text-center text-4xl text-accent"/>
 			}
@@ -81,6 +74,17 @@ export const AirportFilter = () => {
 
 			<div className={"border py-2 px-4 m-2 rounded"}>
 				<span className='font-bold p-1'>Airport filters:</span>
+
+				<select name="municipality"
+						className={"ml-4 px-4 max-w-[110px] select select-secondary hover:bg-primary"}
+						onChange={changeHandler}
+						value={filter.municipality}
+				>
+					<option value="" disabled className={'bg-gray-800'}>City</option>
+					{municipalities.map(el => (
+						<option key={el} className={'bg-gray-700'}>{el}</option>
+					))}
+				</select>
 
 				<select name="type"
 						className={"ml-4 px-4 max-w-[110px] select select-secondary hover:bg-primary"}
@@ -107,7 +111,7 @@ export const AirportFilter = () => {
 
 
 				<select name="region"
-						className={"ml-4 px-4 mr-8 max-w-[110px] select select-secondary hover:bg-primary"}
+						className={"ml-4 px-4 max-w-[110px] select select-secondary hover:bg-primary"}
 						onChange={changeHandler}
 						value={filter.region}
 				>
@@ -117,10 +121,21 @@ export const AirportFilter = () => {
 					))}
 				</select>
 
+				<select name="continent"
+						className={"ml-4 mr-4 px-4 max-w-[110px] select select-secondary hover:bg-primary"}
+						onChange={changeHandler}
+						value={filter.continent}
+				>
+					<option value="" disabled className={'bg-gray-800'}>Continent</option>
+					{continents.map(el => (
+						<option key={el} className={'bg-gray-700'}>{el}</option>
+					))}
+				</select>
 
-				<b>Items:</b>
+
+				<b className='ml-20'>Items:</b>
 				<select name="items_per_page"
-						className={"ml-1 mr-1 px-4 max-w-[70px] select select-accent hover:bg-primary"}
+						className={"ml-2 mr-2 mt-6 px-4 max-w-[70px] select select-accent hover:bg-primary"}
 						onChange={changeHandler}
 						value={filter.items_per_page}
 				>
