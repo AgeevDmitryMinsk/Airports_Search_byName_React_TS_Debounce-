@@ -27,7 +27,18 @@ export interface IFilter {
 	country: IAirportCountry
 }
 
-export type TEMS_PER_PAGE_Type = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+// export type TEMS_PER_PAGE_Type = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+
+export interface AuthServerResponse {
+	access: string;
+	refresh: string;
+}
+
+export interface authData{
+	username: string;
+	//email: string;
+	password: string;
+}
 
 
 export interface IAirportDetails {

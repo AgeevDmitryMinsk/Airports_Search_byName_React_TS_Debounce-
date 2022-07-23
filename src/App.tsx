@@ -1,43 +1,53 @@
 import React, {useEffect} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 import {MainPage} from "./pages/MainPage";
 import {AuthPage} from "./pages/AuthPage";
 import {AirportDetailPage} from "./pages/AirportDetailPage";
 import {Navigation} from "./components/Navigation";
 import {Header} from "./components/Header";
 import {Footer} from "./components/Footer";
-import {useAppDispatch} from "./hook/redux";
+import {useAppDispatch, useAppSelector} from "./hook/redux";
 import {fetchHandbooks} from "./store/actions/handbookActions";
 
 
 function App() {
 
 	const dispatch = useAppDispatch()
+	const isAuth= useAppSelector(state => state.auth.isAuth)
+	const navigate = useNavigate()
+
+	console.log(`isAuth = `, isAuth)
+
+
 
 	useEffect(()=>{
 		dispatch(fetchHandbooks())
 		console.log('dispatch(fetchHandbooks()) загрузка всех возможных вариантов фильтров')
+
 	},[dispatch])
 
-	return (
-		<div className='h-screen'>
-			<Header/>
+	if (isAuth==false) {return <AuthPage/>} else {
+		return (
+			<div className='h-screen'>
+				{/*<Header/>*/}
 
-			<Navigation/>
-			<Routes>
-				<Route path={"/"} element={<MainPage/>}/>
-				<Route path={"/auth"} element={<AuthPage/>}/>
-				<Route path={"/airport/:id"} element={<AirportDetailPage/>}/>
+				<Navigation/>
+				<Routes>
+					<Route path={"/"} element={<MainPage/>}/>
+					<Route path={"/auth"} element={<AuthPage/>}/>
+					<Route path={"/airport/:id"} element={<AirportDetailPage/>}/>
 
-			</Routes>
-
-
-
-			<Footer/>
-		</div>
+				</Routes>
 
 
-	);
+
+				<Footer/>
+			</div>
+
+
+		);
+	}
+
 }
 
 export default App;
