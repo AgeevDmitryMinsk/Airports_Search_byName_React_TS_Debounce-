@@ -10,6 +10,7 @@ interface AuthState {
 	username: string
 	isAuth: boolean
 	error: string
+	loading: boolean
 }
 
 const initialState: AuthState = {
@@ -17,7 +18,8 @@ const initialState: AuthState = {
 	//refresh: '',
 	username: localStorage.getItem(USERNAME_KEY) || '',
 	isAuth: Boolean(localStorage.getItem(ACCESS_KEY)),
-	error: ''
+	error: '',
+	loading: false
 }
 
 interface AuthPayload {
@@ -31,12 +33,16 @@ export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
+		fetchingAuthLoading(state){
+			state.loading = true
+		},
 		login(state, action: PayloadAction<AuthPayload>) {
 			state.access = action.payload.access
 			//state.refresh = action.payload.refresh
 			state.username = action.payload.username
 			state.isAuth = Boolean(action.payload.access)
 			state.error = ''
+			state.loading = false
 
 			localStorage.setItem(ACCESS_KEY, action.payload.access)
 			localStorage.setItem(USERNAME_KEY, action.payload.username)
@@ -44,6 +50,7 @@ export const authSlice = createSlice({
 		fetchError(state, action: PayloadAction<any>) {
 			//state.loading = false
 			state.error = action.payload
+			state.loading = false
 		},
 		logout(state ) {
 			state.access = ''
@@ -51,6 +58,7 @@ export const authSlice = createSlice({
 			state.isAuth = false
 			localStorage.removeItem(ACCESS_KEY)
 			localStorage.removeItem(USERNAME_KEY)
+			state.loading = false
 		}
 	}
 })
