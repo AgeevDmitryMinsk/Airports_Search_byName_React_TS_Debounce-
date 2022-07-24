@@ -19,6 +19,8 @@ export const MainPage = () => {
 	const region = useAppSelector(state => state.settings.filter.region)
 	const country = useAppSelector(state => state.settings.filter.country)
 	const item_per_page = useAppSelector(state => state.settings.filter.items_per_page)
+	const continent = useAppSelector(state => state.settings.filter.continent)
+	const municipality = useAppSelector(state => state.settings.filter.municipality)
 
 
 	const pageCount = Math.ceil(count / item_per_page)
@@ -27,11 +29,12 @@ export const MainPage = () => {
 
 	const dispatch = useAppDispatch()
 
+	// в случае изменения одного из параметров фильтров делаю загрузку новых отфильтрованных данных:
 	useEffect(() => {
 
 		dispatch(fetchAirportsWithFilter(page, item_per_page))
 
-	}, [dispatch, page, type, country, region, item_per_page])
+	}, [dispatch, page, type, country, region, item_per_page, continent, municipality])
 
 	function pageChangeHandler({selected}: { selected: number }) {
 		// console.log(selected)
