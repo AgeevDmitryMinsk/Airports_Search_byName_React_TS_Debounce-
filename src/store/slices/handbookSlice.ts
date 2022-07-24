@@ -43,12 +43,16 @@ export const handbookSlice = createSlice({
 		},
 		fetchSuccess(state, action: PayloadAction<HandBookPayload>) {
 			state.loading = false
-			state.types = action.payload.types
-			state.countries = action.payload.countries
-			state.regions = action.payload.regions
-			state.continents = action.payload.continents
-			state.municipalities = action.payload.municipalities
+			state.types = action.payload.types.sort()
+			state.countries = action.payload.countries.sort()
+			state.regions = action.payload.regions.sort()
+			state.continents = action.payload.continents.sort()
+
+			// state.municipalities = action.payload.municipalities.map(el=> el.replace(/\W/, '')).sort()
+			 state.municipalities = action.payload.municipalities.sort((a:any,b:any) => b > a ? 1 : -1).sort((a) => a[0].match(/[a-zA-Z]/) ? -1 :0)
+			//state.municipalities = action.payload.municipalities.sort()
 		}
+
 
 	}
 })

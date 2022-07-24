@@ -81,7 +81,7 @@ export const AuthPage = () => {
 	console.log(`loading= `, loading)
 	return (
 
-		<div className={'mt-28 mx-auto min-h-screen w-screen  max-w-[380px]'}>
+		<div className={'mt-10 mx-auto min-h-screen w-screen  max-w-[380px]'}>
 			<div className="mockup-code border bg-gray-800 relative text-center ">
 				{/*Auth_Page*/}
 
