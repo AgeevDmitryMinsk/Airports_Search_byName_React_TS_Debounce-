@@ -49,7 +49,7 @@ export const handbookSlice = createSlice({
 			state.continents = action.payload.continents.sort()
 
 			// state.municipalities = action.payload.municipalities.map(el=> el.replace(/\W/, '')).sort()
-			 state.municipalities = action.payload.municipalities.sort((a:any,b:any) => b > a ? 1 : -1).sort((a) => a[0].match(/[a-zA-Z]/) ? -1 :0)
+			 state.municipalities = action.payload.municipalities.sort((a:string,b:string) => b > a ? 1 : -1).sort((a) => a[0].match(/[a-zA-Z]/) ? -1 :0)
 			//state.municipalities = action.payload.municipalities.sort()
 		}
 
