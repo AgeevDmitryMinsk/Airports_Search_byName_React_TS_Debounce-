@@ -41,10 +41,12 @@ export const fetchAuthLogin = (data: authData) => {
 			const response = await axios.post<AuthServerResponse>('auth/login', data)
 			console.log(response)
 
+			dispatch(authSlice.actions.login({access: response.data.access, username: data.username}))
+
 			//добавил задержку для отображения спиннера 300 мСек
-			setTimeout(function delay() {
-				dispatch(authSlice.actions.login({access: response.data.access, username: data.username}))
-			}, 3000)
+			// setTimeout(function delay() {
+			// 	dispatch(authSlice.actions.login({access: response.data.access, username: data.username}))
+			// }, 3000)
 
 
 		} catch (e: any) {
