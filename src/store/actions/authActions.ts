@@ -39,7 +39,7 @@ export const fetchAuthLogin = (data: authData) => {
 			dispatch(authSlice.actions.fetchingAuthLoading())
 
 			const response = await axios.post<AuthServerResponse>('auth/login', data)
-			console.log(response)
+			console.log(42, `response = `, response)
 
 			dispatch(authSlice.actions.login({access: response.data.access, username: data.username}))
 
