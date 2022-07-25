@@ -47,7 +47,7 @@ export const authSlice = createSlice({
 			localStorage.setItem(ACCESS_KEY, action.payload.access)
 			localStorage.setItem(USERNAME_KEY, action.payload.username)
 		},
-		fetchError(state, action: PayloadAction<any>) {
+		fetchError(state, action: PayloadAction<string>) {
 			//state.loading = false
 			state.error = action.payload
 			state.loading = false
