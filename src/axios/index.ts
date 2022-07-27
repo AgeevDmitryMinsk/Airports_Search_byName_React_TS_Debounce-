@@ -3,8 +3,8 @@ import axios from "axios";
 //console.log(process.env.REACT_APP_BASE_URL) // undefined
 
 export default axios.create({
-	// изменил в ручную http -> https но в таком случае получаю ошибку network error, вернул обратно на http
-	baseURL: "https://www.google.com/search?q=%http://docker.digital-spectr.ru:8888/api/"
+	baseURL: "http://docker.digital-spectr.ru:8888/api/"
+	// попытка обойти ошибку http-> https не дала результата
 	//baseURL: "https://ageevdmitryminsk.github.io/?page=http://docker.digital-spectr.ru:8888/api/"
 
 	//baseURL: "http://docker.digital-spectr.ru:8888/api/"
